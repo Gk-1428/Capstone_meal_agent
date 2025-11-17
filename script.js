@@ -1,13 +1,40 @@
+// Function to add a new ingredient input field dynamically
+function addIngredientInput() {
+    const container = document.getElementById('ingredientInputs');
+    const newInput = document.createElement('input');
+    newInput.type = 'text';
+    newInput.className = 'ingredient-input'; // Use this class to find all inputs later
+    newInput.placeholder = 'Another ingredient...';
+    newInput.style.marginBottom = '5px';
+    container.appendChild(newInput);
+}
+
 // Function to call the Flask API
 async function getRecipe() {
-    const ingredient = document.getElementById('ingredient').value;
     const restriction = document.getElementById('restriction').value;
+    
+    // --- START NEW DYNAMIC INPUT COLLECTION ---
+    const ingredientInputs = document.querySelectorAll('.ingredient-input');
+    const ingredients = [];
+    
+    // 1. Collect values from all input fields with the class 'ingredient-input'
+    ingredientInputs.forEach(input => {
+        if (input.value.trim()) {
+            ingredients.push(input.value.trim());
+        }
+    });
+
+    // 2. Join the list of ingredients into a single comma-separated string
+    // Example: "prawn, onion, tomato"
+    const ingredient_list = ingredients.join(', ');
+    // --- END NEW DYNAMIC INPUT COLLECTION ---
+
     const outputDiv = document.getElementById('output');
     const loadingSpinner = document.getElementById('loading');
     
-    // Client-Side Input Validation
-    if (!ingredient || !restriction) {
-        outputDiv.innerHTML = "🚨 *Error:* Please enter both a main ingredient and a dietary restriction.";
+    // Client-Side Input Validation (Now checks for at least ONE ingredient)
+    if (ingredients.length === 0 || !restriction) {
+        outputDiv.innerHTML = "🚨 *Error:* Please enter at least one ingredient and a dietary restriction.";
         return;
     }
 
@@ -25,7 +52,8 @@ async function getRecipe() {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({ 
-                ingredient: ingredient, 
+                // --- Use the new combined list here ---
+                ingredient: ingredient_list, 
                 restriction: restriction 
             })
         });
