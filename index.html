@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Meal Planner Agent</title>
+    <style>
+        /* Basic mobile styling for readability */
+        body { font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #f4f4f4; }
+        h1 { color: #333; text-align: center; }
+        .input-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input[type="text"] { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+        button { width: 100%; padding: 12px; background-color: #4CAF50; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 16px; margin-top: 10px; }
+        button:hover { background-color: #45a049; }
+        #output { background-color: white; border: 1px solid #ddd; padding: 15px; margin-top: 20px; border-radius: 4px; min-height: 100px; white-space: pre-wrap; }
+        .spinner { border: 4px solid rgba(0, 0, 0, 0.1); border-left: 4px solid #4CAF50; border-radius: 50%; width: 24px; height: 24px; animation: spin 1s linear infinite; margin: 10px auto; display: none; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    </style>
+</head>
+<body>
+    <h1>🍽️ AI Meal Planner</h1>
+    <p>Your Mobile Concierge Agent for quick, custom recipes.</p>
+    
+    <div class="input-group">
+        <label for="ingredient">Main Ingredient (e.g., chicken, tofu):</label>
+        <input type="text" id="ingredient" placeholder="Enter ingredient">
+    </div>
+    
+    <div class="input-group">
+        <label for="restriction">Dietary Restriction (e.g., low-carb, vegan):</label>
+        <input type="text" id="restriction" placeholder="Enter restriction">
+    </div>
+    
+    <button onclick="getRecipe()">Suggest Meal</button>
+    
+    <div class="spinner" id="loading"></div>
+    
+    <h2>✨ Recipe Suggestion:</h2>
+    <div id="output">
+        Enter your ingredients and click 'Suggest Meal' to begin!
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
