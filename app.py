@@ -44,11 +44,16 @@ def get_meal_suggestion(ingredient: str, restriction: str):
         "*Instructions:*\n1. [Step 1]\n2. [Step 2]\n3. ..."
     )
 
-    user_request = (
-        f"Generate a recipe using the main ingredient: *{ingredient}*. "
-        f"The recipe must strictly follow the dietary requirement: *{restriction}*."
-    )
+ # ... inside the get_meal_suggestion function ...
 
+    # The actual user's request (UPDATED to reference the list of ingredients)
+    user_request = (
+        f"Generate a simple, quick recipe using the following ingredients: *{ingredient}*. " 
+        f"The recipe must strictly follow the dietary requirement: *{restriction}*. "
+        f"Prioritize using all listed ingredients if possible."
+    )
+    
+    # ... (rest of the function continues) ...
     full_prompt = agent_instruction + "\n\n" + user_request
 
     try:
