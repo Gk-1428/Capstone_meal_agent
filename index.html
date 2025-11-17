@@ -23,23 +23,17 @@
     <p>Your Mobile Concierge Agent for quick, custom recipes.</p>
     
     <div class="input-group">
-        <label for="ingredient">Main Ingredient (e.g., chicken, tofu):</label>
-        <input type="text" id="ingredient" placeholder="Enter ingredient">
+    <label>Ingredients (Add as many as needed):</label>
+    <div id="ingredientInputs">
+        <input type="text" class="ingredient-input" placeholder="e.g., chicken" style="margin-bottom: 5px;">
     </div>
-    
-    <div class="input-group">
-        <label for="restriction">Dietary Restriction (e.g., low-carb, vegan):</label>
-        <input type="text" id="restriction" placeholder="Enter restriction">
-    </div>
-    
-    <button onclick="getRecipe()">Suggest Meal</button>
-    
-    <div class="spinner" id="loading"></div>
-    
-    <h2>✨ Recipe Suggestion:</h2>
-    <div id="output">
-        Enter your ingredients and click 'Suggest Meal' to begin!
-    </div>
+    <button type="button" onclick="addIngredientInput()" style="background-color: #3f51b5; margin-top: 5px; margin-bottom: 10px;">+ Add Another Ingredient</button>
+</div>
+<div class="input-group">
+    <label for="restriction">Dietary Restriction (e.g., low-carb, vegan):</label>
+    <input type="text" id="restriction" placeholder="Enter restriction">
+</div>
+<button onclick="getRecipe()">Suggest Meal</button>
 
     <script src="script.js"></script>
 </body>
